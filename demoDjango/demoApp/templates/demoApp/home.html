@@ -1,0 +1,18 @@
+{% extends 'demoApp/base.html' %}
+
+{% block title %}
+Ceci est la page d'accueil du DemoApp
+{% endblock %}
+
+{% block content %}
+<h1>Page d'accueil</h1>
+
+
+<p>
+    {% if user.is_authenticated %}
+        Bonjour {{user.username}}!
+    {% else %}
+        Bonjour! Veuillez vous connecter <a href="/login">ici</a>.
+    {% endif %}
+</p>
+{% endblock %}

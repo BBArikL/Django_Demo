@@ -1,0 +1,23 @@
+{% extends 'demoApp/base.html' %}
+
+{% block title %}
+Connectez-vous ici
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h1>Connection</h1>
+
+<form method="post" class="form-group">
+    {% csrf_token %}
+    {{form|crispy}}
+    <br>
+    <p>
+        Don't have a account? Create one <a href="/register">here</a>
+    </p>
+    <br>
+    <button type="submit" class="btn btn-success">Connection</button>
+
+</form>
+{% endblock %}

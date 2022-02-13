@@ -1,0 +1,16 @@
+{% extends 'demoApp/base.html' %}
+
+{% block title %}
+Listes
+{% endblock %}
+
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <meta http-equiv="Refresh" content="0; url='/{{user.id}}'" />
+    {% else %}
+        <p>
+            Please login <a href="/login">here</a>.
+        </p>
+    {% endif %}
+{% endblock %}

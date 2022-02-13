@@ -1,0 +1,47 @@
+{% extends "demoApp/base.html" %}
+
+{% block title %}User information{% endblock %}
+
+{% block content %}
+    <h2>{{us.username}}</h2>
+
+    <form method="post" action="#">
+        {% csrf_token %}
+        {% for todo in us.todolist.all %}
+            <h2>{{todo.name}}</h2>
+            {% for item in todo.item_set.all %}
+                <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                {% if item.complete %}
+                                    <input type="checkbox" value="clicked" name="c{{todo.id}}-{{item.id}}" checked>
+                                {% else %}
+                                    <input type="checkbox" value="clicked" name="c{{todo.id}}-{{item.id}}">
+                                {% endif %}
+                            </div>
+                        </div>
+                    <input type="text" name="t{{todo.id}}-{{item.id}}" value="{{item.text}}" class="form-control">
+                </div>
+            {% endfor %}
+            <br>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <button type="submit" name="nouvelItem" value="sub{{todo.id}}" class="btn btn-success">Ajouter Item</button>
+                </div>
+                <input type="text" name="new{{todo.id}}">
+            </div>
+        {% endfor %}
+
+        <div class="input-group mb-3">
+            <button type="submit" name="Enregister" value="Enregister" class="btn btn-success">Enregistrer</button>
+        </div>
+
+        <br><br>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <button type="submit" name="nouvelleListe" value="nouvelleListe" class="btn btn-success">Ajouter liste</button>
+            </div>
+            <input type="text" name="new">
+        </div>
+    </form>
+{% endblock %}
